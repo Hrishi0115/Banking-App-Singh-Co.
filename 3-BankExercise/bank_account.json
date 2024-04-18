@@ -41,7 +41,9 @@
                     "note": "salary"
                 }
                 
-            ],
+            ]
+        }
+            ,
         "rainy_day_pot": {
             "pot_id": "pot_1",
             "balance": 100,
@@ -67,8 +69,7 @@
                     "id": "tx_1",
                     "note": "initial deposit"
                 }
-                ]
-            }
+            ]
         }
     }
 }

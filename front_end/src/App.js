@@ -4,31 +4,47 @@ import axios from 'axios';
 function App() {
   // state to store the balance fetched from the API
   const [balance, setBalance] = useState(null);
+  const [username, SetUsername] = useState(''); // new state for the username 
+  const [inputUsername, setInputUsername] = useState('') // State to track the input field
 
   // we will use useEffect to fetch data here
 
-  useEffect(() => {
+  const fetchBalance = () => {
     // here we make the call to the FastAPI backend to fetch the balance
-    axios.get('http://localhost:8000/balance/Peter%20Pan')
-    // test with Peter Pan first - then parameterise user in later version
+    axios.get(`http://localhost:8000/balance/${inputUsername}`)
       .then(response => {
         // if the request is successful, we update the balance state with the response data
-        console.log(response.data)
         setBalance(response.data.balance); 
       })
       .catch(error => {
         // if there is an error during the request, we log it to the console
-        console.error("Error fetching data:", error); 
+        console.error("Error fetching data:", error);
+        setBalance(null);
       });
-  }, []); // the empty array means this effect runs once on mount
-  
+  };
+
+  const handleButtonClick = () => {
+    SetUsername(inputUsername);
+    fetchBalance();
+  };
+
   // the return statement renders the content of the component
   return (
     <div className="App">
       <header className="App-header">
         <h1>Banking Application</h1>
-        {/* Display the fetched balance or "Loading..." if the balance has not been fetched yet */}
-        <p>Account Balance for Peter Pan: {balance !== null ? `$${balance}` : 'Loading...'}</p>
+        <input
+        type="text"
+        value={inputUsername}
+        onChange={e => setInputUsername(e.target.value)}
+        placeholder='Enter username'
+        />
+        <button onClick={handleButtonClick}>Check Balance</button>
+        {balance !== null ? (
+          <p>Account Balance for {username}: ${balance}</p>
+        ) : (
+          <p>Enter a username a click "Check Balance</p>
+        )}
       </header>
     </div>
   );

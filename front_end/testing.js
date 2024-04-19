@@ -2,34 +2,54 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-  // State to store the balance fetched from the API
   const [balance, setBalance] = useState(null);
+  const [username, setUsername] = useState('');  // New state for the username
+  const [inputUsername, setInputUsername] = useState('');  // State to track the input field
 
-  // useEffect hook to fetch data when the component mounts
-  useEffect(() => {
-    // Here we make the call to the FastAPI backend to fetch the balance
-    // Replace 'http://localhost:8000' with your actual FastAPI server address if different
-    axios.get('http://localhost:8000/balance/Peter%20Pan')
+  const fetchBalance = () => {
+    axios.get(`http://localhost:8000/balance/${inputUsername}`)
       .then(response => {
-        // If the request is successful, we update the balance state with the response data
         setBalance(response.data.balance);
       })
       .catch(error => {
-        // If there is an error during the request, we log it to the console
         console.error("Error fetching data:", error);
+        setBalance(null); // Reset the balance in case of an error
       });
-  }, []); // The empty array means this effect runs once on mount
+  };
 
-  // The return statement renders the content of the component
+  // useEffect will no longer be used to fetch the balance on mount
+  // We remove the axios call from here
+
+  // Update the username and fetch the balance when the button is clicked
+  const handleButtonClick = () => {
+    setUsername(inputUsername);
+    fetchBalance();
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Banking Application</h1>
-        {/* Display the fetched balance or "Loading..." if the balance has not been fetched yet */}
-        <p>Account Balance for Peter Pan: {balance !== null ? `$${balance}` : 'Loading...'}</p>
+        <input
+          type="text"
+          value={inputUsername}
+          onChange={e => setInputUsername(e.target.value)}
+          placeholder="Enter username"
+        />
+        <button onClick={handleButtonClick}>Check Balance</button>
+        {balance !== null ? (
+          <p>Account Balance for {username}: ${balance}</p>
+        ) : (
+          <p>Enter a username and click "Check Balance"</p>
+        )}
       </header>
     </div>
   );
 }
 
 export default App;
+
+
+// C:\Users\HrishiSingh\monzo_api\Monzo_API>cd front_end
+
+// C:\Users\HrishiSingh\monzo_api\Monzo_API\front_end>npm start

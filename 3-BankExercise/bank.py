@@ -16,6 +16,10 @@ def get_account_data_for_user(username: str):
     # For now, we are just using the data loaded from the JSON file
     return accounts_data.get(username)
 
+@app.get("/")
+def default():
+    return {'Welcome to': 'Monzo'}
+
 @app.get("/balance/{username}")
 def read_balance(username: str, pot_name: Optional[str] = None):
     """Retrives the balance of the main account or a specified pot.
@@ -28,7 +32,7 @@ def read_balance(username: str, pot_name: Optional[str] = None):
     if account_data is None:
         raise HTTPException(status_code=404, detail='User not found')
     
-    if pot_name is None or pot_name == 'main':
+    if pot_name is None:
          return {'balance': account_data['main_account']['balance']}
     elif pot_name in account_data:
         return {'balance': account_data[pot_name]['balance']}
@@ -52,8 +56,29 @@ def list_pots(username: str):
         
     return dict_of_pots
     
+@app.get("/transactions/{username}")
+def list_transactions(username: str, pot_name=None):
 
+    account_data = get_account_data_for_user(username)
+    if account_data is None:
+        raise HTTPException(status_code=404, detail='User not found')
 
+    dict_of_transactions = {}
+    # main account logic
+    if pot_name is None:
+        transactions = account_data['main_account']['transactions']
+        for transaction in transactions:
+            dict_of_transactions[transaction['id']] = {'amount': transaction['amount'], 'note': transaction['note']}
+    elif pot_name in account_data:
+        transactions = account_data[pot_name]['transactions']
+        for transaction in transactions:
+            dict_of_transactions[transaction['id']] = {'amount': transaction['amount'], 'note': transaction['note']}
+    else:
+        raise HTTPException(status_code=404, detail='Pot not found')
+
+    return dict_of_transactions
+
+# GET /balance/Peter%20Pan?pot_name=rainy_day_pot
 
 @app.put("/pot/{pot_id}")
 def deposit_into_pot(pot_id: str, amount: float):

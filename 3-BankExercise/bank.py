@@ -1,4 +1,4 @@
-"""To run navigate to this directory and run 'uvicorn bank:app --reload'"""
+# """To run navigate to this directory and run 'uvicorn bank:app --reload'"""
 from typing import Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -35,9 +35,25 @@ def read_balance(username: str, pot_name: Optional[str] = None):
     else:
         raise HTTPException(status_code=404, detail='Pot not found')
 
-@app.get("/pots")
-def list_pots():
-    pass
+# implemented various API endpoints for various use cases
+
+@app.get("/pots/{username}")
+def list_pots(username: str):
+    account_data = get_account_data_for_user(username)
+    if account_data is None:
+        raise HTTPException(status_code=404, detail='User not found')
+    
+    # list all pots including main account 
+
+    dict_of_pots = {}
+    for key, value in account_data.items():
+        if type(value) == dict and 'pot_id' in value.keys():
+            dict_of_pots[key] = value['pot_id']
+        
+    return dict_of_pots
+    
+
+
 
 @app.put("/pot/{pot_id}")
 def deposit_into_pot(pot_id: str, amount: float):

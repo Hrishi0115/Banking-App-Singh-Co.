@@ -1,0 +1,84 @@
+{
+    "users": [
+      {
+        "username": "peterpan",
+        "hashed_password": "81af3730792be7a9fdd0297e89e5c1483cf6aa6280934c2cb1d9ce85d9586564",
+        "account_id": "ac_1"
+      }
+    ],
+    
+    "accounts": {
+        "ac_1": {
+            "user_id": "peterpan",
+            "main_account": {
+                "pot_id": "main",
+                "balance": 1400,
+                "transactions": [
+                    {
+                        "amount": -50,
+                        "id": "tx_7",
+                        "note": "pot_1"
+                    },
+                    {
+                        "amount": -40,
+                        "id": "tx_6",
+                        "note": "groceries"
+                    },
+                    {
+                        "amount": -10,
+                        "id": "tx_5",
+                        "note": "eating_out"
+                    },
+                    {
+                        "amount": -400,
+                        "id": "tx_4",
+                        "note": "rent"
+                    },
+                    {
+                        "amount": -50,
+                        "id": "tx_3",
+                        "note": "pot_2"
+                    },
+                    {
+                        "amount": -50,
+                        "id": "tx_2",
+                        "note": "pot_1"
+                    },
+                    {
+                        "amount": 2000,
+                        "id": "tx_1",
+                        "note": "salary"
+                    }        
+                ]
+            },
+            "rainy_day_pot": {
+                "pot_id": "pot_1",
+                "balance": 100,
+                "transactions": [
+                    {
+                        "amount": 50,
+                        "id": "tx_2",
+                        "note": "eating_out"
+                    },
+                    {
+                        "amount": 50,
+                        "id": "tx_1",
+                        "note": "savings"
+                    }
+                ]
+            },
+            "holiday": {
+                "pot_id": "pot_2",
+                "balance": 50,
+                "transactions": [
+                    {
+                        "amount": 50,
+                        "id": "tx_1",
+                        "note": "initial deposit"
+                    }
+                ]
+            }
+        }
+    }
+}
+  

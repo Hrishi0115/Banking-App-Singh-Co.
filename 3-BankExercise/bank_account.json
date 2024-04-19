@@ -1,6 +1,8 @@
 {
     "Peter Pan": {
         "account_id": "ac_1",
+        "username": "Peter0115",
+        "password": "Pan123",
         "main_account": {
             "pot_id": "main",
             "balance": 1400,

@@ -3,3 +3,7 @@ Todo list:
 - implement all backend API endpoints
 - migrate data store from in-file JSON to external database - Snowflake for easy cost and use (maybe keep JSON version as a testing / development / proof of concept version)
 - improve user interface / experience
+
+
+In progress:
+- improve login page user interface / experience using Material-UI

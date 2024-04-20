@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './login.css';
+
+
 
 const Login = ({ onLogin }) => {
     // declare login functional component with 'onLogin' as a prop - the onLogin prop is a function that should be called when a successful login occurs
@@ -42,17 +45,17 @@ const Login = ({ onLogin }) => {
     return (        
         // start the JSX return block, which defines the layoff of this component
 
-        <div> 
+        <div className='login-container'> 
             {/* acts as the main container for the login form */}
             <h2>Login to Your Account</h2>
             {/* username input */}
             <div>
-                <label>Username:</label>
                 <input
+                    className='login-input'
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    placeholder='Enter username'
+                    placeholder='Username'
                 />
                 {/* value is what the input display will show - in this case it shows the most up-to-date value of 'username'.
                 onChange is an event listener that is triggered every time the user types into the input box. The event (e) contains detail about the change. Here, e.target.value represents the current value of the input field after any change.
@@ -60,18 +63,18 @@ const Login = ({ onLogin }) => {
             </div>
             {/* password input */}
             <div>
-                <label>Password:</label>
                 <input
+                    className='login-input'
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder='Enter password'
+                    placeholder='Password'
                 />
                 {/* similar to above, but <input> is of type "password" so that the input characters are obscured for privacy */}
             </div>
             {/* Login button */}
             <div>
-                <button onClick={handleLoginClick}>Login</button>
+                <button className="login-button" onClick={handleLoginClick}>Login</button>
             </div>
             {/* <button> element that users click to submit their credentials
             onClick={handleLoginClick} assigns the 'handleLoginClick' function to the buttom's click event, which will trigger when the user clicks this button.*/}

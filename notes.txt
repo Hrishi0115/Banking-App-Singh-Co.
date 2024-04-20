@@ -1,0 +1,2 @@
+FastAPI - Python web framework to build Rest API
+uvicorn - ASGI web server implementation for Python

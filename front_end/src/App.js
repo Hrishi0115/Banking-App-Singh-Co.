@@ -1,53 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'; 
+import React, { useState } from 'react';
+import Login from "./login";
+// component: in React is a resusable piece of code that represents a part of the user interface.
+// It acts like a JavaScript function/class that can accepts inputs (props) and returns React elements describing what should appear on the screen.
+// e.g. components can be as simple as a single button or as compelx as an entire app's layout.
+
+// state: refers to data that can change over time within a component. Unlike props, which are passed to components by their parent and are immutable from the component's perspective, state is managed within the component itself.
+// State changes can occur as a result of user actions, API calls, etc., and when the state changes, the component re-renders to reflect the new state.
+
+// hook: a special function that lets you "hook into" React features from function components. One of the most common hooks is 'useState', which allows a function component to have state. 
 
 function App() {
-  // state to store the balance fetched from the API
-  const [balance, setBalance] = useState(null);
-  const [username, SetUsername] = useState(''); // new state for the username 
-  const [inputUsername, setInputUsername] = useState('') // State to track the input field
+  // declare a functional component named 'App'
+  const [IsLoggedIn, setIsLoggedIn] = useState(false);
+  // isLoggedIn: a boolean state that keeps track of whether the user is logged in. Initialised to 'false'
+  const [currentUser, setCurrentUser] = useState('');
+  // currentUser: a string state that holds the username of the currently logged-in user - initialised to an empty string
+  // useState initialises the state and provides a setter function (like setIsLoggedIn and setCurrentUser) to update that state
 
-  // we will use useEffect to fetch data here
-
-  const fetchBalance = () => {
-    // here we make the call to the FastAPI backend to fetch the balance
-    axios.get(`http://localhost:8000/balance/${inputUsername}`)
-      .then(response => {
-        // if the request is successful, we update the balance state with the response data
-        setBalance(response.data.balance); 
-      })
-      .catch(error => {
-        // if there is an error during the request, we log it to the console
-        console.error("Error fetching data:", error);
-        setBalance(null);
-      });
+  const handleLogin = (username) => {
+    setCurrentUser(username);
+    setIsLoggedIn(true);
+    // function is triggered when a succesful login occurs 
   };
 
-  const handleButtonClick = () => {
-    SetUsername(inputUsername);
-    fetchBalance();
-  };
-
-  // the return statement renders the content of the component
   return (
-    <div className="App">
-      <header className="App-header">
+    // begins the return statement of the component, which specifies the JSX structure to be rendered to the DOM
+    <div className='App'>
+      <header className='App-header'>
         <h1>Banking Application</h1>
-        <input
-        type="text"
-        value={inputUsername}
-        onChange={e => setInputUsername(e.target.value)}
-        placeholder='Enter username'
-        />
-        <button onClick={handleButtonClick}>Check Balance</button>
-        {balance !== null ? (
-          <p>Account Balance for {username}: ${balance}</p>
+        {!IsLoggedIn ? (
+          <Login onLogin={handleLogin} />
         ) : (
-          <p>Enter a username a click "Check Balance</p>
+          <div>
+            <p>Welcome, {currentUser}!</p>
+          </div>
         )}
+        {/* ternary operator (?:) for conditional rendering based on the isLoggedIn state */}
+        {/* if isLoggedIn is false (!IsLoggedIn) then the 'handleLogin' function is passed to it through props*/}
+        {/* if isLoggedIn is true (else) then a greeting message is displayed welcoming the 'currentUser' */}
       </header>
     </div>
   );
-}
+};
 
 export default App;

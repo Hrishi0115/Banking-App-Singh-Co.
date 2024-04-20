@@ -1,0 +1,5 @@
+Task: - improve the user interface of login page using a React UI library
+
+1. Choose a UI Library - for banking applications, a clean and professional look is often desired, e.g. Material-UI
+2. install the library in the project directory - npm install @mui/material@emotion/react @emotion/styled - run in the front_end directory
+3. 

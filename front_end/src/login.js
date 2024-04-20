@@ -4,7 +4,8 @@ import axios from 'axios';
 const Login = ({ onLogin }) => {
     // declare login functional component with 'onLogin' as a prop - the onLogin prop is a function that should be called when a successful login occurs
 
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState(''); 
+    // sets username to '', can update username with e.g. setUsername('peterpan') -> username = 'peterpan' - useState creates the setter and variable
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
@@ -53,9 +54,9 @@ const Login = ({ onLogin }) => {
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder='Enter username'
                 />
-                {/* div contains a <label> and <input> element for the username
-                input element is of type text, bound to the 'username' state variable, 
-                its value updates through the 'onChange' handler, which sets the state to the current input value using 'setUsername' */}
+                {/* value is what the input display will show - in this case it shows the most up-to-date value of 'username'.
+                onChange is an event listener that is triggered every time the user types into the input box. The event (e) contains detail about the change. Here, e.target.value represents the current value of the input field after any change.
+                setUsername(e.target.value) updates the state of username to the latest value typed by the user*/}
             </div>
             {/* password input */}
             <div>
@@ -75,8 +76,12 @@ const Login = ({ onLogin }) => {
             {/* <button> element that users click to submit their credentials
             onClick={handleLoginClick} assigns the 'handleLoginClick' function to the buttom's click event, which will trigger when the user clicks this button.*/}
             {error && <p style={{ color: 'red' }}>{error}</p>}
+            {/* so when button is clicked - then the function defined above handleLoginClick is called */}
+            {/* the && operator - for conditional rendering - first evaluates the expression before && - if it is truthy (not null - empty string) then React will process and render the element on the right side of the && operator - here the red error message.*/}
         </div>
     );
 };
 
 export default Login;
+
+// 

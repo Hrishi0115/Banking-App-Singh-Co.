@@ -23,10 +23,13 @@ function App() {
     // function is triggered when a succesful login occurs 
   };
 
+  // Below: orginally IsLoggedIn is false but after the Login function is exectured with onLogin = handleLogin which setIsLoggedIn(true); then after this happens since IsLoggedIn is now true we exeute the ifExprFalse part which loads the Welcome, {currentUser}.
+
   return (
     // begins the return statement of the component, which specifies the JSX structure to be rendered to the DOM
     <div className='App'>
       <header className='App-header'>
+        {/* Ternary Operator: condition ? exprIfTrue : exprIfFalse - */}
         <h1>Banking Application</h1>
         {!IsLoggedIn ? (
           <Login onLogin={handleLogin} />

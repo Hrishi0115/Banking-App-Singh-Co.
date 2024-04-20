@@ -158,3 +158,112 @@ const Login = ({ onLogin }) => {
 };
 
 export default Login;
+
+
+
+return (        
+  // start the JSX return block, which defines the layoff of this component
+  <div className='login-container'> 
+      {/* acts as the main container for the login form */}
+      <h2>Login to Your Account</h2>
+      {/* username input */}
+      <div>
+          <input
+              className='login-input'
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder='Username'
+          />
+          {/* value is what the input display will show - in this case it shows the most up-to-date value of 'username'.
+          onChange is an event listener that is triggered every time the user types into the input box. The event (e) contains detail about the change. Here, e.target.value represents the current value of the input field after any change.
+          setUsername(e.target.value) updates the state of username to the latest value typed by the user*/}
+      </div>
+      {/* password input */}
+      <div>
+          <input
+              className='login-input'
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder='Password'
+          />
+          {/* similar to above, but <input> is of type "password" so that the input characters are obscured for privacy */}
+      </div>
+      {/* Login button */}
+      <div>
+          <button className="login-button" onClick={handleLoginClick}>Login</button>
+      </div>
+      {/* <button> element that users click to submit their credentials
+      onClick={handleLoginClick} assigns the 'handleLoginClick' function to the buttom's click event, which will trigger when the user clicks this button.*/}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {/* so when button is clicked - then the function defined above handleLoginClick is called */}
+      {/* the && operator - for conditional rendering - first evaluates the expression before && - if it is truthy (not null - empty string) then React will process and render the element on the right side of the && operator - here the red error message.*/}
+  </div>
+);
+
+
+
+export default Login;
+
+
+<div className={classes.container}> 
+{/* acts as the main container for the login form */}
+<Card className={classes.card}>
+    <CardContent>
+        <Typography variant="h5" component="h2" gutterBottom>
+            Login to Your Account
+        </Typography>
+        <TextField
+            label="Username"
+            variant="outlined"
+            fullWidth
+            className={classes.input}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            />
+        <TextField
+            label="Password"
+            type="password"
+            variant="outlined"
+            fullWidth
+            className={classes.input}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            />
+        <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            className={classes.button}
+            onClick={handleLoginClick}
+            >
+                Login
+            </Button>
+            {error && <Typography color="error">{error}</Typography>}
+    </CardContent>
+</Card>
+</div>
+
+import { Card, CardContent, TextField, Button, Typography, makeStyles } from '@mui/material';
+
+const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '100vh',
+    background: 'linear-gradient(to right, #6DD5FA, #FF758C)', // Example gradient
+  },
+  card: {
+    minWidth: 275,
+    margin: theme.spacing(2),
+  },
+  input: {
+    margin: theme.spacing(1),
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+}));

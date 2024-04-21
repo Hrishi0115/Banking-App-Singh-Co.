@@ -6,12 +6,7 @@ import axios from 'axios';
 // import Typography from '@mui/material/Typography';
 // import Container from '@mui/material/Container';
 // import Alert from '@mui/material/Alert';
-import { TextField, Button, Box, Typography, Container, Alert, Paper } from '@mui/material';
-
-const logoUrl = 'bank_logo.png';
-const backgroundUrl = 'city_background.jpg'
-
-
+import { TextField, Button, Box, Typography, Container, Alert } from '@mui/material';
 
 const Login = ({ onLogin }) => {
 
@@ -38,40 +33,24 @@ const Login = ({ onLogin }) => {
     };
 
     return (
-        <Container component="main" sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '100vh',
-            alignItems: 'center',
-            justifyContent: 'flex-start', // Change to 'center' to center it vertically
-            backgroundImage: `url(${backgroundUrl})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            paddingTop: '64px', // Add some padding at the top or adjust as needed
-        }}>
-            <Paper elevation={3} sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                padding: 2,
-                backgroundColor: '#fff', // Ensure this is white
-                borderRadius: '16px', // Optional: for rounded corners
-                maxWidth: 400, // Set a max-width for the Paper
-                width: '100%', // Make Paper width responsive
-                margin: '0 auto', // Center the Paper block
-                position: 'relative', // Needed for z-index to work
-                zIndex: 2, // Ensure Paper is above the background
-                '& > img': { // Apply styles to img tag directly within Paper
-                    maxWidth: '150px',
-                    height: 'auto',
-                    margin: '16px 0', // Adjust space around the logo
-                },
-            }}>
-                <img src={logoUrl} alt="Logo" />
+        // container component acts as a wrapper for the content with a maximum width of extra-small
+        <Container component = "main" maxWidth="xs">
+            <Box
+                sx={{
+                    marginTop: 8, // adds spacing on the top
+                    display: 'flex', // uses flexbox layout
+                    flexDirection: 'column', // children (items/tags/content inside Box) are stacked vertically
+                    alignItems: 'center' // Centers children horizontally
+                }}
+            >
+                {/* Typography is used for text content; in this case, it's used for the title of the form */}
+                <Typography component="h1" variant="h5">
+                    Bank of Hrishi
+                    {/* change font, add logo, improve in general */}
+                </Typography>
 
                 {/* Another Box component acting as a form element with additional top margin styling */}
-                <Box component="form" sx={{ mt: 1, width: '100%' }}>
+                <Box component="form" sx={{ mt: 1 }}>
                     {/* TextField is an input component for user text input for the username */}
                     <TextField
                         margin="normal" // adds normal margin around the TextField
@@ -99,7 +78,7 @@ const Login = ({ onLogin }) => {
                         autoComplete="new-password"
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)} 
-                        variant="outlined"
+                        variant="outlined" 
                     />
 
                     {/* button component that triggers the login action when clicked */}
@@ -120,9 +99,8 @@ const Login = ({ onLogin }) => {
                     </Alert>
                 )}
             </Box>              
-        </Paper>
+        </Box>
     </Container>
 )};
 
 export default Login;
-

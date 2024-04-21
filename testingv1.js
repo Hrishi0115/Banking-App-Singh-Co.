@@ -129,3 +129,118 @@ return (
     </Box>
   </Container>
 );
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  Container,
+  Alert,
+  Paper, // Importing Paper for the box effect
+  InputAdornment, // Importing InputAdornment for icons
+} from '@mui/material';
+import AccountCircle from '@mui/icons-material/AccountCircle'; // Importing icon for username
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'; // Importing icon for password
+
+const Login = ({ onLogin }) => {
+  // ...your existing useState calls and handleLoginClick function
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <Paper elevation={3} sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 2 }}>
+        {/* ... rest of your code ... */}
+        <Box component="form" sx={{ mt: 1, width: '100%' }}> {/* Use 100% width for the form within the Paper */}
+          <TextField
+            margin="normal"
+            fullWidth
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
+            autoFocus
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AccountCircle />
+                </InputAdornment>
+              ),
+            }}
+          />
+          {/* ... your password TextField with similar modifications ... */}
+          <TextField
+            margin="normal"
+            fullWidth
+            type="password"
+            id="password"
+            label="Password"
+            name="password"
+            autoComplete="new-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <LockOutlinedIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          {/* ... rest of your code ... */}
+        </Box>
+      </Paper>
+    </Container>
+  );
+};
+
+export default Login;
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import { TextField, Button, Box, Typography, Container, Alert, Paper } from '@mui/material';
+
+// Assuming you have placed the images in the public folder or similar
+const logoUrl = 'path-to-your-logo.jpg'; // Replace with the actual path to your logo
+const backgroundUrl = 'path-to-your-background-image.jpg'; // Replace with the actual path to your cityscape image
+
+const Login = ({ onLogin }) => {
+    // ... your existing state and handleLoginClick function
+
+    return (
+        <Container component="main" maxWidth="xs" sx={{
+            display: 'flex', 
+            flexDirection: 'column', 
+            minHeight: '100vh', 
+            justifyContent: 'center',
+            alignItems: 'center', 
+            backgroundImage: `url(${backgroundUrl})`, 
+            backgroundRepeat: 'no-repeat', 
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+        }}>
+            <Paper elevation={3} sx={{
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'center', 
+                padding: 2,
+                backgroundColor: 'rgba(255, 255, 255, 0.8)', // Optional: for better readability
+            }}>
+                <Box sx={{ width: '100%', my: 2 }}>
+                    <img src={logoUrl} alt="Logo" style={{ width: '100%', height: 'auto' }} />
+                </Box>
+                <Typography component="h1" variant="h5" sx={{ mb: 2 }}>
+                    {/* Your logo can act as the title now */}
+                </Typography>
+                {/* ... rest of your login form */}
+            </Paper>
+        </Container>
+    );
+};
+
+export default Login;

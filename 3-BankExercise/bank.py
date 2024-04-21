@@ -43,3 +43,7 @@ def login(credentials: LoginCredentials):
     else:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="Incorrect username or password")
+
+@app.get("/")
+def root():
+    return {'Welcome' : 'to Monzo'}

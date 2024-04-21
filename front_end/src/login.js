@@ -1,30 +1,25 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './login.css'
-
+// import TextField from '@mui/material/TextField';
+// import Button from '@mui/material/Button';
+// import Box from '@mui/material/Box';
+// import Typography from '@mui/material/Typography';
+// import Container from '@mui/material/Container';
+// import Alert from '@mui/material/Alert';
+import { TextField, Button, Box, Typography, Container, Alert } from '@mui/material';
 
 const Login = ({ onLogin }) => {
-    // declare login functional component with 'onLogin' as a prop - the onLogin prop is a function that should be called when a successful login occurs
 
     const [username, setUsername] = useState(''); 
-    // sets username to '', can update username with e.g. setUsername('peterpan') -> username = 'peterpan' - useState creates the setter and variable
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    // initialise three state variables using useState
-    // username holds the current value of the username input, setUsername is the function to update it, etc. 
-
     const handleLoginClick = async () => {
-        // asynchronous functions allow other tasks to run in parallel - useful since many operations in JS take a long time to complete
-        // declare handleLogicClick, a asynchronous function that is called when the logic button is clicked
-        // Placeholder for authentication logic
         try {
             const response = await axios.post('http://localhost:8000/login', {
                 username,
                 password
             });
-            // try block attempts to send a POST request to the server with 'username' and 'password' as the payload
-            // await is used with axios.post to send an asynchronous HTTP POST request to the specified URL, waiting for the promise to resolve before moving on
             
             if (response.data.message === 'Login successful!') {
                 onLogin(username);
@@ -32,55 +27,80 @@ const Login = ({ onLogin }) => {
             else {
                 setError('Login failed');
             }
-            // check if the message in the response data indicates a successful login
-            // calls 'onLogin(username) if successful, passing the username up for further use.
-            // Sets an error state if the message indicates failure
         } catch (error) {
             setError('Invalid username or password');
-            // the catch block captures any errors during the login process, such as network issues, server errors and sets an appropriate error message
         }
     };
 
-    return (        
-        // start the JSX return block, which defines the layoff of this component
-        <div className={'login-container'}> 
-        {/* acts as the main container for the login form */}
-        <h2>Login to Your Account</h2>
-        {/* username input */}
-        <div>
-            <input
-                className='login-input'
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder='Username'
-            />
-            {/* value is what the input display will show - in this case it shows the most up-to-date value of 'username'.
-            onChange is an event listener that is triggered every time the user types into the input box. The event (e) contains detail about the change. Here, e.target.value represents the current value of the input field after any change.
-            setUsername(e.target.value) updates the state of username to the latest value typed by the user*/}
-        </div>
-        {/* password input */}
-        <div>
-            <input
-                className='login-input'
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder='Password'
-            />
-            {/* similar to above, but <input> is of type "password" so that the input characters are obscured for privacy */}
-        </div>
-        {/* Login button */}
-        <div>
-            <button className="login-button" onClick={handleLoginClick}>Login</button>
-        </div>
-        {/* <button> element that users click to submit their credentials
-        onClick={handleLoginClick} assigns the 'handleLoginClick' function to the buttom's click event, which will trigger when the user clicks this button.*/}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {/* so when button is clicked - then the function defined above handleLoginClick is called */}
-        {/* the && operator - for conditional rendering - first evaluates the expression before && - if it is truthy (not null - empty string) then React will process and render the element on the right side of the && operator - here the red error message.*/}
-    </div>
-    );
-};
+    return (
+        // container component acts as a wrapper for the content with a maximum width of extra-small
+        <Container component = "main" maxWidth="xs">
+            <Box
+                sx={{
+                    marginTop: 8, // adds spacing on the top
+                    display: 'flex', // uses flexbox layout
+                    flexDirection: 'column', // children (items/tags/content inside Box) are stacked vertically
+                    alignItems: 'center' // Centers children horizontally
+                }}
+            >
+                {/* Typography is used for text content; in this case, it's used for the title of the form */}
+                <Typography component="h1" variant="h5">
+                    Bank of Hrishi
+                    {/* change font, add logo, improve in general */}
+                </Typography>
+
+                {/* Another Box component acting as a form element with additional top margin styling */}
+                <Box component="form" sx={{ mt: 1 }}>
+                    {/* TextField is an input component for user text input for the username */}
+                    <TextField
+                        margin="normal" // adds normal margin around the TextField
+                        // required // indicates the field is required
+                        fullWidth // the TextField will take up the full width of its parent
+                        id="username" // id for the input element
+                        label="Username" // the label text for the input
+                        name="username" // name attribute for the input ? 
+                        autoComplete="username" // helps browers auto-fill the input based on its name ?
+                        autoFocus // automatically focuses this input when component loads ?
+                        value={username} // controlled component with 'username' being the state
+                        onChange={(e) => setUsername(e.target.value)} // updates state on user input
+                        variant="outlined" // the style variant for the TextField border
+                    />
+
+                    {/* another TextField for the password */}
+                    <TextField
+                        margin="normal" 
+                        // required 
+                        fullWidth 
+                        type="password"
+                        id="password" 
+                        label="Password" 
+                        name="password" 
+                        autoComplete="current-password" 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        variant="outlined" 
+                    />
+
+                    {/* button component that triggers the login action when clicked */}
+                    <Button
+                        type="button"
+                        fullWidth
+                        variant="contained" // stype variant of the button, with a background colour
+                        sx={{ mt: 3, mb: 2 }} // adds top and bottom margins
+                        onClick={handleLoginClick} // function to call when the button is clicked
+                    >
+                        Login
+                    </Button>
+                
+                {/* conditional rendering of the Alert component if there is an error */}
+                {error && (
+                    <Alert severity='error' sx={{ mt: 2 }}>
+                        {error}
+                    </Alert>
+                )}
+            </Box>              
+        </Box>
+    </Container>
+)};
 
 export default Login;

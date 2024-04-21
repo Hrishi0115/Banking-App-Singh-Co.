@@ -11,38 +11,6 @@ import { TextField, Button, Box, Typography, Container, Alert, Paper, InputBase 
 const logoUrl = 'Singh&Co.png';
 const backgroundUrl = 'backgroundtest.png'
 
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-    'label + &': {
-      marginTop: theme.spacing(3),
-    },
-    '& .MuiInputBase-input': {
-      borderRadius: 4, // Adjust for rounded corners
-      position: 'relative',
-      backgroundColor: theme.palette.common.white,
-      border: '1px solid #ced4da',
-      fontSize: 16,
-      padding: '10px 12px',
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
-      // Use the system font instead of the default Roboto font
-      fontFamily: [
-        '-apple-system',
-        'BlinkMacSystemFont',
-        '"Segoe UI"',
-        'Roboto',
-        '"Helvetica Neue"',
-        'Arial',
-        'sans-serif',
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-      ].join(','),
-      '&:focus': {
-        boxShadow: `${theme.palette.primary.main} 0 0 0 0.2rem`,
-        borderColor: theme.palette.primary.main,
-      },
-    },
-  }));
-
 const Login = ({ onLogin }) => {
 
     const [username, setUsername] = useState(''); 

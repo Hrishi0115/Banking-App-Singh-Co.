@@ -1,15 +1,15 @@
 {
     "users": [
-      {
-        "username": "peterpan",
-        "hashed_password": "81af3730792be7a9fdd0297e89e5c1483cf6aa6280934c2cb1d9ce85d9586564",
-        "account_id": "ac_1"
-      }
+        {
+            "username": "peterpan",
+            "hashed_password": "81af3730792be7a9fdd0297e89e5c1483cf6aa6280934c2cb1d9ce85d9586564",
+            "email": "peterpan@gmail.com",
+            "full_name": "Peter Pan",
+            "account_id": "ac_1"
+        }
     ],
-    
     "accounts": {
         "ac_1": {
-            "user_id": "peterpan",
             "main_account": {
                 "pot_id": "main",
                 "balance": 1400,
@@ -48,7 +48,7 @@
                         "amount": 2000,
                         "id": "tx_1",
                         "note": "salary"
-                    }        
+                    }
                 ]
             },
             "rainy_day_pot": {
@@ -81,4 +81,3 @@
         }
     }
 }
-  

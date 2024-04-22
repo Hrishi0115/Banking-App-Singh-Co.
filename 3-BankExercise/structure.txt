@@ -1,0 +1,9 @@
+Router modules contain endpoints relating to their logical grouping, e.g. all authentication-related endpoints (login, logout, password reset) are in one router module, all user account management (account creation, profile updates) in another.
+account interaction - check balance, pots, transactions
+
+Models.py contain all pydantic Models
+
+database.py contain ways to interact with the database (JSON file)
+
+Main.py imports everything neccessary and where web service is run
+

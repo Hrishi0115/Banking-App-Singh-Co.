@@ -6,45 +6,94 @@ import axios from 'axios';
 // import Typography from '@mui/material/Typography';
 // import Container from '@mui/material/Container';
 // import Alert from '@mui/material/Alert';
-import { TextField, Button, Box, Typography, Container, Alert, Paper, InputBase } from '@mui/material';
+import { TextField, Button, Box, Container, Alert, Paper, InputAdornment, } from '@mui/material';
+import { styled } from '@mui/material/styles'
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-const logoUrl = 'Singh&Co.png';
-const backgroundUrl = 'backgroundtest.png'
 
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-    'label + &': {
-      marginTop: theme.spacing(3),
-    },
+const logoUrl = 'company_logo.png';
+const backgroundUrl = 'check3.png'
+
+const StyledTextField = styled(TextField)({
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: 'grey', // Set the color of the border
+          borderRadius: '0px', // Rounded corners
+        },
+
     '& .MuiInputBase-input': {
-      borderRadius: 4, // Adjust for rounded corners
-      position: 'relative',
-      backgroundColor: theme.palette.common.white,
-      border: '1px solid #ced4da',
-      fontSize: 16,
-      padding: '10px 12px',
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
-      // Use the system font instead of the default Roboto font
-      fontFamily: [
-        '-apple-system',
-        'BlinkMacSystemFont',
-        '"Segoe UI"',
-        'Roboto',
-        '"Helvetica Neue"',
-        'Arial',
-        'sans-serif',
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-      ].join(','),
-      '&:focus': {
-        boxShadow: `${theme.palette.primary.main} 0 0 0 0.2rem`,
-        borderColor: theme.palette.primary.main,
+        // Add styles for placeholder here
+        '&::placeholder': {
+        // Styles when the input is not empty
+        opacity: 0,
+        transition: 'opacity 0.2s ease-in-out',
+        },
+        '&:not(:placeholder-shown)::placeholder': {
+        // Styles when the input is empty
+        opacity: 1,
+        },
+    },
+    // Style the text field
+
+      '&:hover fieldset': {
+        borderColor: 'darkgrey', // Darker border on hover
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'black', // Even darker when field is focused
       },
     },
-  }));
+    // Set the width of the input fields
+    width: '80%', // Adjust this value as needed
+    maxWidth: '350px', // Adjust this value as needed to match the design
+    '& label.Mui-focused': {
+        color: 'primary', // Change to your theme's primary color
+      },
+      '& .MuiInputLabel-outlined': {
+        zIndex: 2,
+        transform: 'translate(14px, 20px) scale(1)', // Default position
+        lineHeight: '1',
+        
+      },
+      '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+        transform: 'translate(14px, -6px) scale(0.75)',
+      },
+      '& .MuiInputBase-input:valid + fieldset .MuiInputLabel-outlined': {
+        display: 'none',
+      },
+      '& .MuiInputBase-input:focus + fieldset .MuiInputLabel-outlined': {
+        display: 'none',
+      },
+      // ... (other styles)
+      '& .MuiInputLabel-shrink': {
+        transform: 'translate(14px, -6px) scale(0.75)', // Position after the label shrinks
+      },
+  
+    // Add other styles here as needed
+    '& .MuiOutlinedInput-input': {
+        '&:-webkit-autofill': {
+          WebkitBoxShadow: '0 0 0 100px #fff inset',
+          WebkitTextFillColor: '#000',
+          borderRadius: '0px', // Keep consistent with your design
+        },
+      },
+  });
+  
+  const StyledButton = styled(Button)({
+    // Style the button
+    backgroundColor: '#E89105', // Use your primary color
+    '&:hover': {
+      backgroundColor: '#CC7000', // Darker on hover
+    },
+    width: '50%', // Less wide
+    height: '48px', // Taller button
+    borderRadius: '0px', // Fully rounded edges
+  });
+  
+
 
 const Login = ({ onLogin }) => {
-
+    
     const [username, setUsername] = useState(''); 
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -66,6 +115,8 @@ const Login = ({ onLogin }) => {
             setError('Invalid username or password');
         }
     };
+
+    const [inputFocus, setInputFocus] = useState({ username: false, password: false });
 
     return (
         // The empty tags <> and </> are shorthand for <React.Fragment> and </React.Fragment>. Fragments let you group a list of children without adding extra nodes to the DOM.
@@ -107,58 +158,61 @@ const Login = ({ onLogin }) => {
                     <img 
                         src={logoUrl} 
                         alt="Logo" 
-                        style={{ maxWidth: '100%', height: 'auto', marginTop: '20px' }} // Adjust the size as needed
+                        style={{ maxWidth: '75%', height: 'auto', paddingTop: '30px', paddingBottom: '30px'}} // Adjust the size as needed
                     />
-                    {/* ... rest of your login form ... */}
-                    <Box component="form" sx={{ mt: 1, width: '100%' }}>
-                    
-                    {/* TextField is an input component for user text input for the username */}
-                    <TextField
-                        margin="normal" // adds normal margin around the TextField
-                        // required // indicates the field is required
-                        fullWidth // the TextField will take up the full width of its parent
-                        id="username" // id for the input element
-                        label="Username" // the label text for the input
-                        name="username" // name attribute for the input ? 
-                        autoComplete="username" // helps browers auto-fill the input based on its name ?
-                        autoFocus // automatically focuses this input when component loads ?
-                        value={username} // controlled component with 'username' being the state
-                        onChange={(e) => setUsername(e.target.value)} // updates state on user input
-                        variant="outlined" // the style variant for the TextField border
-                    />
+                    <Box component="form" sx={{ mt: 1, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <StyledTextField
+                        autoComplete='username'
+                            label="Username"
+                            variant="outlined"
+                            value={username}
+                            margin="normal"
+                            onChange={(e) => setUsername(e.target.value)}
+                            onFocus={() => setInputFocus({ ...inputFocus, username: true })}
+                            onBlur={() => setInputFocus({ ...inputFocus, username: false })}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        {inputFocus.username || username ? null : <AccountCircle />}
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                        <StyledTextField
+                        autoComplete='new-password'
+                            label="Password"
+                            variant="outlined"
+                            type="password"
+                            value={password}
+                            margin="normal"
+                            onChange={(e) => setPassword(e.target.value)}                    
+                            onFocus={() => setInputFocus({ ...inputFocus, password: true })}
+                            onBlur={() => setInputFocus({ ...inputFocus, password: false })}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        {inputFocus.password || password ? null : <LockOutlinedIcon />}
+                                    </InputAdornment>
+                                ),
+                            }}
+                            sx={{
+                            marginBottom: '20px', // Increase space between Password and Login button
+                            }}
+                        />
+                        <StyledButton
+                            type="button"
+                            variant="contained"
+                            onClick={handleLoginClick}
+                        >
+                            Login
+                        </StyledButton>
 
-                    {/* another TextField for the password */}
-                    <TextField
-                        margin="normal" 
-                        // required 
-                        fullWidth 
-                        type="password"
-                        id="password" 
-                        label="Password" 
-                        name="password" 
-                        autoComplete="new-password"
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)} 
-                        variant="outlined"
-                    />
-
-                    {/* button component that triggers the login action when clicked */}
-                    <Button
-                        type="button"
-                        fullWidth
-                        variant="contained" // stype variant of the button, with a background colour
-                        sx={{ mt: 3, mb: 2 }} // adds top and bottom margins
-                        onClick={handleLoginClick} // function to call when the button is clicked
-                    >
-                        Login
-                    </Button>
-                
-                {/* conditional rendering of the Alert component if there is an error */}
-                {error && (
-                    <Alert severity='error' sx={{ mt: 2 }}>
-                        {error}
-                    </Alert>
-                )}
+                        {/* conditional rendering of the Alert component if there is an error */}
+                        {error && (
+                            <Alert severity='error' sx={{ mt: 2 }}>
+                                {error}
+                            </Alert>
+                        )}
                     </Box>
                 </Paper>
             </Container>

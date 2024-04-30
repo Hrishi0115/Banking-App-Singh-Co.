@@ -4,12 +4,35 @@
             "username": "peterpan",
             "hashed_password": "81af3730792be7a9fdd0297e89e5c1483cf6aa6280934c2cb1d9ce85d9586564",
             "email": "peterpan@gmail.com",
-            "full_name": "Peter Pan",
-            "account_id": "ac_1"
+            "account_id": "1"
+        },
+        {
+            "username": "hrish2",
+            "password": "185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969",
+            "email": "hrish0115@gmail.com",
+            "account_id": "ac_2"
+        },
+        {
+            "username": "hrish3",
+            "password": "185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969",
+            "email": "hrish0115@icloud.com",
+            "account_id": "22b494fa-369c-4efa-a172-7e2e5a7102a4"
+        },
+        {
+            "username": "hdwag0115",
+            "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+            "email": "hrishi0115@visa.com",
+            "account_id": "a516e07b-3d17-491c-b2b0-40be8eb7ad1d"
+        },
+        {
+            "username": "deepa",
+            "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+            "email": "deepa@hotmail.com",
+            "account_id": "b2805438-4f46-4ca7-a4ef-d79211766726"
         }
     ],
     "accounts": {
-        "ac_1": {
+        "1": {
             "main_account": {
                 "pot_id": "main",
                 "balance": 1400,

@@ -6,11 +6,10 @@ import axios from 'axios';
 // import Typography from '@mui/material/Typography';
 // import Container from '@mui/material/Container';
 // import Alert from '@mui/material/Alert';
-import { TextField, Button, Box, Container, Alert, Paper, InputAdornment, } from '@mui/material';
+import { TextField, Button, Box, Container, Alert, Paper, InputAdornment, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles'
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-
 
 const logoUrl = 'company_logo.png';
 const backgroundUrl = 'check3.png'
@@ -79,20 +78,27 @@ const StyledTextField = styled(TextField)({
       },
   });
   
-  const StyledButton = styled(Button)({
-    // Style the button
-    backgroundColor: '#E89105', // Use your primary color
+const LoginButton = styled(Button)({
+// Style the button
+backgroundColor: '#E89105', // Use your primary color
+'&:hover': {
+    backgroundColor: '#CC7000', // Darker on hover
+},
+width: '50%', // Less wide
+height: '48px', // Taller button
+borderRadius: '0px', // Fully rounded edges
+});
+
+const RegisterLink = styled('span')({
+    color: 'blue',
+    cursor: 'pointer',
+    textTransform: 'none', // Ensures text remains as styled, not uppercase
     '&:hover': {
-      backgroundColor: '#CC7000', // Darker on hover
-    },
-    width: '50%', // Less wide
-    height: '48px', // Taller button
-    borderRadius: '0px', // Fully rounded edges
-  });
-  
+        textDecoration: 'underline', // Underline on hover to indicate it's clickable
+    }
+});
 
-
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, toggleAuthPage }) => {
     
     const [username, setUsername] = useState(''); 
     const [password, setPassword] = useState('');
@@ -199,20 +205,26 @@ const Login = ({ onLogin }) => {
                             marginBottom: '20px', // Increase space between Password and Login button
                             }}
                         />
-                        <StyledButton
+                        <LoginButton
                             type="button"
                             variant="contained"
                             onClick={handleLoginClick}
                         >
                             Login
-                        </StyledButton>
+                        </LoginButton>
 
-                        {/* conditional rendering of the Alert component if there is an error */}
+                        <Box component="form" sx={{ mt: 1, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        {/* existing form elements */}
+                        <Typography variant="body2" sx={{ mt: 1, textAlign: 'center' }}>
+                            Not a member?{' '}
+                            <RegisterLink onClick={toggleAuthPage}>join now</RegisterLink>
+                        </Typography>
                         {error && (
                             <Alert severity='error' sx={{ mt: 2 }}>
                                 {error}
                             </Alert>
                         )}
+                        </Box>
                     </Box>
                 </Paper>
             </Container>

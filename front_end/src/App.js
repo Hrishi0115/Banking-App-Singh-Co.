@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Login from "./login";
+import Register from './register';
+
 // component: in React is a resusable piece of code that represents a part of the user interface.
 // It acts like a JavaScript function/class that can accepts inputs (props) and returns React elements describing what should appear on the screen.
 // e.g. components can be as simple as a single button or as compelx as an entire app's layout.
@@ -16,6 +18,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState('');
   // currentUser: a string state that holds the username of the currently logged-in user - initialised to an empty string
   // useState initialises the state and provides a setter function (like setIsLoggedIn and setCurrentUser) to update that state
+  const [showLogin, setShowLogin] = useState(true);
 
   const handleLogin = (username) => {
     setCurrentUser(username);
@@ -23,16 +26,21 @@ function App() {
     // function is triggered when a succesful login occurs 
   };
 
+  const toggleAuthPage = () => setShowLogin(!showLogin); // toggle between login and registration
+
   // Below: orginally IsLoggedIn is false but after the Login function is executed with onLogin = handleLogin which setIsLoggedIn(true); then after this happens since IsLoggedIn is now true we exeute the ifExprFalse part which loads the Welcome, {currentUser}.
 
   return (
     // begins the return statement of the component, which specifies the JSX structure to be rendered to the DOM
     <div className='App'>
       <header className='App-header'>
-      {/* <h1>Banking Application</h1> */}
         {/* Ternary Operator: condition ? exprIfTrue : exprIfFalse - */}
         {!IsLoggedIn ? (
-          <Login onLogin={handleLogin} />
+          showLogin ? (
+            <Login onLogin={handleLogin} toggleAuthPage={toggleAuthPage}/>
+          ) : (
+            <Register toggleAuthPage={toggleAuthPage} />
+          )
         ) : (
           <div>
             <p>Welcome, {currentUser}!</p>

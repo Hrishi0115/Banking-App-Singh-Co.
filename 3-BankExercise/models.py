@@ -19,6 +19,5 @@ class UserAccount(BaseModel):
     username: str
     password: str
     email: str
-    full_name: str
-    account_id: str
+    account_id: str = None
 

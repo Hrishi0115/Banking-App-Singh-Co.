@@ -33,6 +33,8 @@ async def add_account(account: UserAccount):
     # need to fix the account_id to make it automated - doesn't need to be inputed as part of the input function - needs to be unique (+1 [previous accounts id])
     
     accounts['users'].append(new_user_account)
+
+    accounts['accounts'][account.account_id] = {}
     
     save_accounts(accounts)
     

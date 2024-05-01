@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Login from "./login";
 import Register from './register';
+import Home from './home';
+
 
 // component: in React is a resusable piece of code that represents a part of the user interface.
 // It acts like a JavaScript function/class that can accepts inputs (props) and returns React elements describing what should appear on the screen.
@@ -31,24 +34,23 @@ function App() {
   // Below: orginally IsLoggedIn is false but after the Login function is executed with onLogin = handleLogin which setIsLoggedIn(true); then after this happens since IsLoggedIn is now true we exeute the ifExprFalse part which loads the Welcome, {currentUser}.
 
   return (
-    // begins the return statement of the component, which specifies the JSX structure to be rendered to the DOM
     <div className='App'>
       <header className='App-header'>
-        {/* Ternary Operator: condition ? exprIfTrue : exprIfFalse - */}
-        {!IsLoggedIn ? (
-          showLogin ? (
-            <Login onLogin={handleLogin} toggleAuthPage={toggleAuthPage}/>
+        <Routes>
+          {IsLoggedIn ? (
+            <>
+              <Route path="/home" element={<Home currentUser={currentUser} />} />
+              <Route path="*" element={<Navigate replace to="/home" />} />
+            </>
           ) : (
-            <Register toggleAuthPage={toggleAuthPage} />
-          )
-        ) : (
-          <div>
-            <p>Welcome, {currentUser}!</p>
-          </div>
-        )}
-        {/* ternary operator (?:) for conditional rendering based on the isLoggedIn state */}
-        {/* if isLoggedIn is false (!IsLoggedIn) then the 'handleLogin' function is passed to it through props*/}
-        {/* if isLoggedIn is true (else) then a greeting message is displayed welcoming the 'currentUser' */}
+            <>
+              <Route path="/login" element={<Login onLogin={handleLogin} />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<Navigate replace to="/login" />} />
+              <Route path="*" element={<Navigate replace to="/login" />} />
+            </>
+          )}
+        </Routes>
       </header>
     </div>
   );

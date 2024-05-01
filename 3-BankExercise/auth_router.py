@@ -13,7 +13,7 @@ def login(credentials: LoginCredentials):
     user = next((u for u in users if u['username'] == credentials.username), None)
 
     # if user exists and password matches
-    if user and user['hashed_password'] == hash_password(credentials.password):
+    if user and user['password'] == hash_password(credentials.password):
         # in a real application / production environment, generate a token here
         return {"message": "Login successful!"}
     else:

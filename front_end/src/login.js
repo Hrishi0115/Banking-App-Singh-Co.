@@ -10,9 +10,10 @@ import { TextField, Button, Box, Container, Alert, Paper, InputAdornment, Typogr
 import { styled } from '@mui/material/styles'
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { useNavigate } from 'react-router-dom';
 
 const logoUrl = 'company_logo.png';
-const backgroundUrl = 'check3.png'
+const backgroundUrl = 'check3.png';
 
 const StyledTextField = styled(TextField)({
     '& .MuiOutlinedInput-root': {
@@ -99,7 +100,7 @@ const RegisterLink = styled('span')({
 });
 
 const Login = ({ onLogin, toggleAuthPage }) => {
-    
+    const navigate = useNavigate();
     const [username, setUsername] = useState(''); 
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -120,6 +121,10 @@ const Login = ({ onLogin, toggleAuthPage }) => {
         } catch (error) {
             setError('Invalid username or password');
         }
+    };
+
+    const goToRegister = () => {
+        navigate('/register');  // This will navigate to the Register component
     };
 
     const [inputFocus, setInputFocus] = useState({ username: false, password: false });
@@ -185,7 +190,7 @@ const Login = ({ onLogin, toggleAuthPage }) => {
                             }}
                         />
                         <StyledTextField
-                        autoComplete='new-password'
+                            autoComplete='new-password'
                             label="Password"
                             variant="outlined"
                             type="password"
@@ -217,7 +222,7 @@ const Login = ({ onLogin, toggleAuthPage }) => {
                         {/* existing form elements */}
                         <Typography variant="body2" sx={{ mt: 1, textAlign: 'center' }}>
                             Not a member?{' '}
-                            <RegisterLink onClick={toggleAuthPage}>join now</RegisterLink>
+                            <RegisterLink onClick={goToRegister}>Join now</RegisterLink>
                         </Typography>
                         {error && (
                             <Alert severity='error' sx={{ mt: 2 }}>

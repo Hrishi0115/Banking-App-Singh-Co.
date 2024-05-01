@@ -2,13 +2,19 @@
     "users": [
         {
             "username": "peterpan",
-            "hashed_password": "81af3730792be7a9fdd0297e89e5c1483cf6aa6280934c2cb1d9ce85d9586564",
+            "password": "fd82f0e95c8034cfeacd4fb4d2853d50749364f1c98f780158aa3196fed7d0d7",
             "email": "peterpan@gmail.com",
-            "account_id": "1"
+            "account_id": "6378952b-5d3b-40f8-bae6-69670debff1f"
+        },
+        {
+            "username": "johncena",
+            "password": "b4b597c714a8f49103da4dab0266af0ee0ae4f8575250a84855c3d76941cd422",
+            "email": "johncena@wwe.com",
+            "account_id": "3740cef2-400c-4817-9546-1e19ca82fe1b"
         }
     ],
     "accounts": {
-        "1": {
+        "6378952b-5d3b-40f8-bae6-69670debff1f": {
             "main_account": {
                 "pot_id": "main",
                 "balance": 1400,
@@ -77,6 +83,7 @@
                     }
                 ]
             }
-        }
+        },
+        "3740cef2-400c-4817-9546-1e19ca82fe1b": {}
     }
 }

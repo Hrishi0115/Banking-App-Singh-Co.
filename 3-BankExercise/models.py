@@ -25,11 +25,11 @@ class NewPot(BaseModel):
     account_id: str
     pot_name: str
     pot_id: str = None
-    balance: int = 0
+    balance: float = 0
     transactions: list[Transaction] = []
 
 class Pot(BaseModel):
     pot_name: str
     pot_id: str
-    balance: int
+    balance: float
     transactions: list[Transaction] 

@@ -30,7 +30,7 @@ async def add_account(account: UserAccount):
                     'email': account.email,
                     'account_id': account.account_id}
     
-    # need to fix the account_id to make it automated - doesn't need to be inputed as part of the input function - needs to be unique (+1 [previous accounts id])
+    # need to fix the account_id to make it automated - doesn't need to be inputed as part of the input function - needs to be unique (+1 [previous accounts id]) - fixed!
     
     accounts['users'].append(new_user_account)
 

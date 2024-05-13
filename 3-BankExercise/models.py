@@ -10,10 +10,10 @@ class Transaction(BaseModel):
     id: str
     note: str
 
-class BankAccount(BaseModel):
-    pot_id: str
-    balance: float
-    transactions: list[Transaction]
+# class BankAccount(BaseModel):
+#     pot_id: str
+#     balance: float
+#     transactions: list[Transaction]
 
 class UserAccount(BaseModel):
     username: str
@@ -21,3 +21,15 @@ class UserAccount(BaseModel):
     email: str
     account_id: str = None
 
+class NewPot(BaseModel):
+    account_id: str
+    pot_name: str
+    pot_id: str = None
+    balance: int = 0
+    transactions: list[Transaction] = []
+
+class Pot(BaseModel):
+    pot_name: str
+    pot_id: str
+    balance: int
+    transactions: list[Transaction] 

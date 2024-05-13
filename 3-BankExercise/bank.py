@@ -1,8 +1,7 @@
 # """To run navigate to this directory and run 'uvicorn bank:app --reload'"""
 from fastapi import FastAPI, HTTPException, status
 import json
-
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 

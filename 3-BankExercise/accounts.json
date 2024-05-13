@@ -11,6 +11,12 @@
             "password": "b4b597c714a8f49103da4dab0266af0ee0ae4f8575250a84855c3d76941cd422",
             "email": "johncena@wwe.com",
             "account_id": "3740cef2-400c-4817-9546-1e19ca82fe1b"
+        },
+        {
+            "username": "hstar123",
+            "password": "008c70392e3abfbd0fa47bbc2ed96aa99bd49e159727fcba0f2e6abeb3a9d601",
+            "email": "hstar@hotmail.com",
+            "account_id": "1d460678-ef68-41ae-b5df-5dcad9b59e1a"
         }
     ],
     "accounts": {
@@ -84,6 +90,12 @@
                 ]
             }
         },
-        "3740cef2-400c-4817-9546-1e19ca82fe1b": {}
+        "3740cef2-400c-4817-9546-1e19ca82fe1b": {},
+        "1d460678-ef68-41ae-b5df-5dcad9b59e1a": {
+            "pot_name": "test_pot",
+            "pot_id": "9b131dc6-0d97-40f7-ac9c-d4b316a711f2",
+            "balance": 0,
+            "transactions": []
+        }
     }
 }

@@ -138,11 +138,12 @@ const Login = ({ onLogin, toggleAuthPage }) => {
                 left: 0,
                 width: '100vw', // 100% of the viewport width
                 height: '100vh', // 100% of the viewport height
-                backgroundImage: `url(${backgroundUrl})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                zIndex: -1, // Keep the background image behind everything else
+                // backgroundImage: `url(${backgroundUrl})`,
+                // backgroundRepeat: 'no-repeat',
+                // backgroundSize: 'cover',
+                // backgroundPosition: 'center',
+                // zIndex: -1, // Keep the background image behind everything else
+                backgroundColor: '#FFDAB9'
             }} />
 
             <Container component="main" maxWidth="xs" sx={{

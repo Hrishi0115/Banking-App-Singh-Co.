@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Box, Container, Alert, Paper, InputAdornment, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles'
 
-const backgroundUrl = 'check3.png';
 const logoUrl = 'small.png';
 const StyledTextField = styled(TextField)({
     '& .MuiOutlinedInput-root': {
